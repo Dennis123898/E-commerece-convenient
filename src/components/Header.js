@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ const Header = () => {
             </div>
             <nav className="relative">
                 <button onClick={toggleIcons} className="md:hidden">
-                    <span className="text-white">☰</span>
+                    <span className="text-black">☰</span>
                 </button>
                 {isOpen && (
                     <div className="absolute bg-gray-800 text-white p-4 rounded-md w-full ">
@@ -29,9 +30,12 @@ const Header = () => {
                     <img src="images/cart_icon.png" 
                          alt="Cart icon" 
                          className="w-12 h-14 p-3 object-contain cursor-pointer" />
-                    <img src="images/account.icon.jpg" 
-                         alt="account icon" 
-                         className="w-12 h-14 p-3 object-contain cursor-pointer" /> 
+                    <SignedOut>
+                      <SignInButton />
+                    </SignedOut>
+                    <SignedIn>
+                      <UserButton />
+                    </SignedIn>  
                 </div>
             </nav>
         </header>
